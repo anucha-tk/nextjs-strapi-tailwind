@@ -37,3 +37,9 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+# yarn berry
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+.pnp.*
