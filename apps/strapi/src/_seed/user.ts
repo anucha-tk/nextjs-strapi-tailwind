@@ -8,7 +8,9 @@ export const seedUserExists = async (strapi: any): Promise<number> => {
     "plugin::users-permissions.user",
     {
       filters: {
-        username: SEED_USERNAME,
+        username: {
+          $startsWith: SEED_USERNAME,
+        },
       },
     },
   );
