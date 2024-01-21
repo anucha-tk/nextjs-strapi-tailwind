@@ -1,0 +1,41 @@
+{
+  "name": "strapi",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "dev": "dotenv -e ../../.env.development strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi",
+    "seed": "FORCE_APP_BOOTSTRAP_ONLY=true dotenv -e ../../.env.development strapi start"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.3.1"
+  },
+  "dependencies": {
+    "@strapi/plugin-cloud": "4.17.1",
+    "@strapi/plugin-i18n": "4.17.1",
+    "@strapi/plugin-users-permissions": "4.17.1",
+    "@strapi/strapi": "4.17.1",
+    "better-sqlite3": "8.6.0",
+    "chalk": "^5.3.0",
+    "dotenv-cli": "^7.3.0",
+    "pg": "^8.11.3",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-router-dom": "5.3.4",
+    "styled-components": "5.3.3"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "f4bc3943-3b94-487e-87d2-7a791848a7ab"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
