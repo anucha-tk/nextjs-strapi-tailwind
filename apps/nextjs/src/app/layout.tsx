@@ -1,11 +1,14 @@
 import { Metadata } from 'next';
 import * as React from 'react';
+import dynamic from 'next/dynamic';
+const ThemeProvider = dynamic(() => import('../styles/theme'), { ssr: false });
 
 import '@/styles/globals.css';
 // !STARTERCONF This is for demo purposes, remove @/styles/colors.css import immediately
 import '@/styles/colors.css';
 
 import { siteConfig } from '@/constant/config';
+import Navbar from '@/components/nav/Navbar';
 
 // !STARTERCONF Change these default meta
 // !STARTERCONF Look at @/constant/config to change them
@@ -56,7 +59,12 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider attribute='class'>
+          <Navbar />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
