@@ -1,45 +1,52 @@
 import siteMetadata from '@/data/siteMetadata'
-import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
 import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
-import SearchButton from './SearchButton'
+import headerNavLinks from '@/data/headerNavLinks'
+import Image from 'next/image'
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between py-10">
-      <div>
-        <Link href="/" aria-label={siteMetadata.headerTitle}>
-          <div className="flex items-center justify-between">
-            <div className="mr-3">
-              <Logo />
-            </div>
-            {typeof siteMetadata.headerTitle === 'string' ? (
-              <div className="hidden h-6 text-2xl font-semibold sm:block">
-                {siteMetadata.headerTitle}
-              </div>
-            ) : (
-              siteMetadata.headerTitle
-            )}
-          </div>
-        </Link>
-      </div>
-      <div className="flex items-center space-x-4 leading-5 sm:space-x-6">
-        {headerNavLinks
-          .filter((link) => link.href !== '/')
-          .map((link) => (
+    <header id="header_navigation" className="h-20 items-stretch">
+      <div className="flex h-20 flex-shrink-0 flex-col items-center justify-center" id="header">
+        <div className="flex w-full items-center justify-between px-8" id="container">
+          <div className="flex items-center gap-10" id="content">
             <Link
-              key={link.title}
-              href={link.href}
-              className="hidden font-medium text-gray-900 dark:text-gray-100 sm:block"
+              href="/"
+              aria-label={siteMetadata.headerTitle}
+              className="flex content-center items-center gap-2.5"
             >
-              {link.title}
+              <Image src="/static/images/icons8-b-100.png" width={32} height={32} alt="logo" />
+              {typeof siteMetadata.headerTitle === 'string' ? (
+                <div className="text-center text-2xl font-semibold sm:block">
+                  {siteMetadata.headerTitle}
+                </div>
+              ) : (
+                siteMetadata.headerTitle
+              )}
             </Link>
-          ))}
-        <SearchButton />
-        <ThemeSwitch />
-        <MobileNav />
+            <div className="flex items-center gap-8" id="navigation">
+              {headerNavLinks
+                .filter((link) => link.href !== '/')
+                .map((link) => (
+                  <Link
+                    key={link.title}
+                    href={link.href}
+                    className="hidden font-medium text-gray-500 dark:text-gray-100 sm:block"
+                  >
+                    {link.title}
+                  </Link>
+                ))}
+            </div>
+          </div>
+          <div className="flex items-center gap-3" id="navigation_action">
+            <ThemeSwitch />
+            <button className="hidden content-center items-center gap-2 rounded-lg bg-[#7f56d9] px-4 py-2.5 text-white sm:flex">
+              Contect Me
+            </button>
+            <MobileNav />
+          </div>
+        </div>
       </div>
     </header>
   )
