@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'Next.js Blog',
   author: 'Anucha.tk',
-  headerTitle: 'TailwindBlog',
+  headerTitle: 'Blogger.dev',
   description: 'A blog created with Next.js and Tailwind.css',
   language: 'en-us',
   theme: 'system', // system, dark or light
@@ -90,4 +90,4 @@ const siteMetadata = {
   },
 }
 
-module.exports = siteMetadata
+export default siteMetadata

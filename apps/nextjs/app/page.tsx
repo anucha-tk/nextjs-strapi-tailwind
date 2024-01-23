@@ -1,5 +1,10 @@
-import Main from './Main'
+import { BlogPageHeader } from '@/components/BlogPageHeader'
 
 export default async function Page() {
-  return <Main />
+  return (
+    <>
+      <BlogPageHeader />
+      <section className="" id="cta_section"></section>
+    </>
+  )
 }

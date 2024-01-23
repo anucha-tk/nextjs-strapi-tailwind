@@ -16,7 +16,13 @@ const Header = () => {
               aria-label={siteMetadata.headerTitle}
               className="flex content-center items-center gap-2.5"
             >
-              <Image src="/static/images/icons8-b-100.png" width={32} height={32} alt="logo" />
+              <Image
+                src="/static/images/icons8-b-100.png"
+                width={32}
+                height={32}
+                alt="logo"
+                priority={true}
+              />
               {typeof siteMetadata.headerTitle === 'string' ? (
                 <div className="text-center text-2xl font-semibold sm:block">
                   {siteMetadata.headerTitle}

@@ -1,6 +1,4 @@
-// @ts-check
-const { fontFamily } = require('tailwindcss/defaultTheme')
-const colors = require('tailwindcss/colors')
+import { fontFamily } from 'tailwindcss/defaultTheme'
 
 /** @type {import("tailwindcss/types").Config } */
 module.exports = {
@@ -15,59 +13,48 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
-      lineHeight: {
-        11: '2.75rem',
-        12: '3rem',
-        13: '3.25rem',
-        14: '3.5rem',
-      },
       fontFamily: {
         sans: ['var(--font-inter)', ...fontFamily.sans],
       },
       colors: {
-        primary: colors.pink,
+        // untitled ui colors
+        primary: {
+          25: '#fcfaff',
+          50: '#f9f5ff',
+          100: '#f4ebff',
+          200: '#e9d7fe',
+          300: '#dfbbfb',
+          400: '#b692f6',
+          500: '#9e77ed',
+          600: '#7f56d9',
+          700: '#6941c6',
+          800: '#53389e',
+          900: '#42307d',
+        },
         gray: {
           100: '#F2F4F7',
           500: '#667085',
+          900: '#101828',
         },
       },
-      typography: ({ theme }) => ({
-        DEFAULT: {
-          css: {
-            a: {
-              color: theme('colors.primary.500'),
-              '&:hover': {
-                color: `${theme('colors.primary.600')}`,
-              },
-              code: { color: theme('colors.primary.400') },
-            },
-            'h1,h2': {
-              fontWeight: '700',
-              letterSpacing: theme('letterSpacing.tight'),
-            },
-            h3: {
-              fontWeight: '600',
-            },
-            code: {
-              color: theme('colors.indigo.500'),
-            },
+      // untitled ui font
+      fontSize: {
+        'md-semibold': [
+          '48px',
+          {
+            lineHeight: '60px',
+            letterSpacing: '-0.96px',
+            fontWeight: '600',
           },
-        },
-        invert: {
-          css: {
-            a: {
-              color: theme('colors.primary.500'),
-              '&:hover': {
-                color: `${theme('colors.primary.400')}`,
-              },
-              code: { color: theme('colors.primary.400') },
-            },
-            'h1,h2,h3,h4,h5,h6': {
-              color: theme('colors.gray.100'),
-            },
+        ],
+        'xl-normal': [
+          '20px',
+          {
+            lineHeight: '30px',
+            fontWeight: '400',
           },
-        },
-      }),
+        ],
+      },
     },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
