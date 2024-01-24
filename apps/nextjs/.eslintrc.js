@@ -16,6 +16,7 @@ module.exports = {
     'plugin:prettier/recommended',
     'next',
     'next/core-web-vitals',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
   parserOptions: {
     project: true,

@@ -7,6 +7,7 @@ import Footer from '@/components/Footer'
 import siteMetadata from '@/data/siteMetadata'
 import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
+import ReactQueryPvorider from 'services/react-query/provider'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -74,15 +75,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className="bg-white text-primary antialiased dark:bg-gray-950 dark:text-gray-50"
         suppressHydrationWarning
       >
-        <ThemeProviders>
-          <SectionContainer>
-            <div className="flex flex-col justify-between font-sans">
-              <Header />
-              <main className="mb-auto">{children}</main>
-              <Footer />
-            </div>
-          </SectionContainer>
-        </ThemeProviders>
+        <ReactQueryPvorider>
+          <ThemeProviders>
+            <SectionContainer>
+              <div className="flex flex-col justify-between font-sans">
+                <Header />
+                <main className="mb-auto">{children}</main>
+                <Footer />
+              </div>
+            </SectionContainer>
+          </ThemeProviders>
+        </ReactQueryPvorider>
       </body>
     </html>
   )

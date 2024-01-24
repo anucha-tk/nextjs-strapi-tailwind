@@ -145,7 +145,6 @@ export const customTypograpy = {
     {
       lineHeight: '32px',
       fontWeight: '400',
-      letterSpacing: '-0.96px',
     },
   ],
   'display-xs-medium': [
@@ -153,7 +152,6 @@ export const customTypograpy = {
     {
       lineHeight: '32px',
       fontWeight: '500',
-      letterSpacing: '-0.96px',
     },
   ],
   'display-xs-semibold': [
@@ -161,7 +159,6 @@ export const customTypograpy = {
     {
       lineHeight: '32px',
       fontWeight: '600',
-      letterSpacing: '-0.96px',
     },
   ],
   'display-xs-bold': [
@@ -169,7 +166,38 @@ export const customTypograpy = {
     {
       lineHeight: '32px',
       fontWeight: '700',
-      letterSpacing: '-0.96px',
+    },
+  ],
+  'display-md-regular': [
+    '36px',
+    {
+      lineHeight: '44px',
+      fontWeight: '400',
+      letterSpacing: '-0.72px',
+    },
+  ],
+  'display-md-medium': [
+    '36px',
+    {
+      lineHeight: '44px',
+      fontWeight: '500',
+      letterSpacing: '-0.72px',
+    },
+  ],
+  'display-md-semibold': [
+    '36px',
+    {
+      lineHeight: '44px',
+      fontWeight: '600',
+      letterSpacing: '-0.72px',
+    },
+  ],
+  'display-md-bold': [
+    '36px',
+    {
+      lineHeight: '44px',
+      fontWeight: '700',
+      letterSpacing: '-0.72px',
     },
   ],
   'display-lg-regular': [

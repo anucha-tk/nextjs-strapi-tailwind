@@ -381,6 +381,20 @@ export interface ApiBlogBlog extends Schema.CollectionType {
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    tag: Attribute.Enumeration<
+      [
+        'Technology',
+        'Travel',
+        'HealthAndWellness',
+        'PersonalDevelopment',
+        'FoodAndRecipes',
+        'Fashion',
+        'HomeDecor',
+        'Entrepreneurship',
+        'BookReviews',
+        'DIYProjects'
+      ]
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

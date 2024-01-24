@@ -38,6 +38,18 @@ const _randomBlog = (seedUserIds: number[]) => {
       ],
     },
   ];
+  const tags = [
+    "Technology",
+    "Travel",
+    "HealthAndWellness",
+    "PersonalDevelopment",
+    "FoodAndRecipes",
+    "Fashion",
+    "HomeDecor",
+    "Entrepreneurship",
+    "BookReviews",
+    "DIYProjects",
+  ];
   return {
     title: faker.lorem.words(3),
     content,
@@ -45,5 +57,6 @@ const _randomBlog = (seedUserIds: number[]) => {
     createdAt: faker.date.past(),
     updatedAt: faker.date.recent(),
     author: faker.helpers.arrayElement(seedUserIds),
+    tag: faker.helpers.arrayElement(tags),
   };
 };

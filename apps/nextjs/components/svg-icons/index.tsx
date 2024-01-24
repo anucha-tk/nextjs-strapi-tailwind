@@ -1,4 +1,3 @@
-import { Facebook } from '../social-icons/icons'
 import { ArrowUpRight } from './icon'
 
 const components = {
