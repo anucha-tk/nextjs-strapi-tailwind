@@ -7,6 +7,7 @@
     "access": "public"
   },
   "exports": {
-    "blog": "./src/blog.ts"
+    "blog": "./src/blog.ts",
+    "tag": "./src/tag.ts"
   }
 }

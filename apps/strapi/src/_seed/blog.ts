@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import chalk from "chalk";
 import { findSeedUser } from "./user";
+import { findSeedTags } from "./tag";
 
 export const generateBlogData = async (strapi: any) => {
   console.log(chalk.green("generating blogs"));
@@ -10,11 +11,12 @@ export const generateBlogData = async (strapi: any) => {
   console.log("blogs size", chalk.bold.bgCyan.black(blogsSize));
 
   const seedUserIds = await findSeedUser(strapi);
+  const seedTagIds = await findSeedTags(strapi);
 
   const bulkBlogPromises = [];
   const randomBlogsData = new Array(blogsSize)
     .fill(null)
-    .map(() => _randomBlog(seedUserIds));
+    .map(() => _randomBlog(seedUserIds, seedTagIds));
 
   for (const randomBlogData of randomBlogsData) {
     const randomBlogPromise = strapi.entityService.create("api::blog.blog", {
@@ -27,7 +29,8 @@ export const generateBlogData = async (strapi: any) => {
 
   await Promise.all(bulkBlogPromises);
 };
-const _randomBlog = (seedUserIds: number[]) => {
+
+const _randomBlog = (seedUserIds: number[], seedTagIds: number[]) => {
   const content = [
     {
       type: "paragraph",
@@ -38,18 +41,6 @@ const _randomBlog = (seedUserIds: number[]) => {
       ],
     },
   ];
-  const tags = [
-    "Technology",
-    "Travel",
-    "HealthAndWellness",
-    "PersonalDevelopment",
-    "FoodAndRecipes",
-    "Fashion",
-    "HomeDecor",
-    "Entrepreneurship",
-    "BookReviews",
-    "DIYProjects",
-  ];
   return {
     title: faker.lorem.words(3),
     content,
@@ -57,6 +48,6 @@ const _randomBlog = (seedUserIds: number[]) => {
     createdAt: faker.date.past(),
     updatedAt: faker.date.recent(),
     author: faker.helpers.arrayElement(seedUserIds),
-    tag: faker.helpers.arrayElement(tags),
+    tags: faker.helpers.arrayElements(seedTagIds, 3),
   };
 };

@@ -2,6 +2,7 @@ import chalk from "chalk";
 import { createSeedUsers, seedUserExists } from "./user";
 import { clearData } from "./helpers";
 import { generateBlogData } from "./blog";
+import { createSeedTags } from "./tag";
 
 export const generateSeedData = async (strapi: any) => {
   const dataExists = await seedUserExists(strapi);
@@ -23,6 +24,7 @@ export const generateSeedData = async (strapi: any) => {
   console.log(chalk.magenta("generating seed data..."));
 
   await createSeedUsers(strapi);
+  await createSeedTags(strapi);
 
   await Promise.all([generateBlogData(strapi)]).catch((e) => {
     console.error(

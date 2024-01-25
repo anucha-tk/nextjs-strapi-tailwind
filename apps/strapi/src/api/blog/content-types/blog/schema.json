@@ -23,30 +23,21 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
     },
-    "tag": {
-      "type": "enumeration",
-      "enum": [
-        "Technology",
-        "Travel",
-        "HealthAndWellness",
-        "PersonalDevelopment",
-        "FoodAndRecipes",
-        "Fashion",
-        "HomeDecor",
-        "Entrepreneurship",
-        "BookReviews",
-        "DIYProjects"
-      ]
-    },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag"
     }
   }
 }
