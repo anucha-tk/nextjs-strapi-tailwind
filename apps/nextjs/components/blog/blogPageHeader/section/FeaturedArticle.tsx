@@ -6,10 +6,20 @@ import moment from 'moment'
 
 export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
   let date = '-'
-  if (blog?.attributes.publishedAt) {
+  if (blog?.attributes?.publishedAt) {
     const dateObject = moment(blog.attributes.publishedAt)
     date = dateObject.format('DD MMMM YYYY')
   }
+
+  let imageUrl = '/static/images/placeholder.jpg'
+  if (blog?.attributes?.image?.data?.attributes?.formats?.medium?.url)
+    imageUrl = blog?.attributes?.image?.data?.attributes?.formats?.medium?.url
+
+  let tags = blog?.attributes?.tags?.data || []
+  tags = tags.slice(0, 3)
+
+  const contents: string[] = []
+  blog?.attributes?.content?.map((e) => e.children?.map((c) => c.text && contents.push(c.text)))
 
   return (
     <article
@@ -20,34 +30,36 @@ export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
         className="relative flex h-full flex-1 flex-col items-start justify-end gap-spacing-2xl self-stretch overflow-hidden rounded-2xl border-gray-200 dark:border-gray-800 sm:min-h-[720px] sm:gap-8 sm:border"
         id="image"
       >
-        <div className="relative h-full w-full sm:absolute" id="image_config">
-          <Image
-            src={'/static/images/canada/mountains.jpg'}
-            alt="image"
-            sizes="100vw"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-            }}
-            priority
-            width={1216}
-            height={720}
-          />
-        </div>
+        {imageUrl ? (
+          <div className="relative h-full w-full sm:absolute" id="image_config">
+            <Image
+              src={imageUrl}
+              alt="image"
+              sizes="100vw"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+              priority
+              width={1216}
+              height={720}
+            />
+          </div>
+        ) : null}
         <div
-          className=" inset-x-0 bottom-0 z-20 flex w-full flex-col content-center items-center self-stretch sm:pt-spacing-9xl"
+          className="inset-x-0 bottom-0 z-20 flex w-full flex-col content-center items-center self-stretch sm:pt-spacing-9xl"
           id="button_panel"
         >
           <div
-            className="flex flex-col items-start gap-spacing-4xl self-stretch backdrop-blur-none sm:p-spacing-4xl sm:backdrop-blur-sm"
+            className="flex flex-col items-start gap-spacing-4xl self-stretch backdrop-blur-none sm:p-spacing-4xl sm:backdrop-blur-md"
             id="attribution"
           >
             <div className=" flex flex-col items-start gap-spacing-3xl self-stretch" id="container">
               <div className="flex h-10 items-center gap-spacing-md sm:hidden" id="categories">
                 <div className="flex items-center" id="badge">
                   <p className="text-sm-semibold text-brand-primary dark:text-brand-primary-dark">
-                    {blog?.attributes.tag}
+                    {tags[0] && tags[0].attributes?.name}
                   </p>
                 </div>
               </div>
@@ -58,7 +70,7 @@ export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
               >
                 <div className="flex items-start gap-spacing-xl self-stretch" id="heading_and_icon">
                   <p className="flex-1 text-display-xs-semibold sm:text-white">
-                    {blog?.attributes.title}
+                    {blog?.attributes?.title}
                   </p>
                   <SvgIcon
                     kind="arrowUpRight"
@@ -68,9 +80,7 @@ export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
                     strokWidth={2}
                   />
                 </div>
-                <p className="text-md-regular sm:text-white">
-                  {blog?.attributes.content[0].children[0].text}
-                </p>
+                <p className="text-md-regular sm:text-white">{contents[0]}</p>
               </div>
               <div
                 className="flex items-start gap-spacing-3xl self-stretch text-white"
@@ -102,7 +112,7 @@ export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
                       </div>
                       <div className="flex flex-col gap-spacing-sm sm:flex-row">
                         <p className="text-sm-semibold text-primary dark:text-primary-dark sm:text-white">
-                          {blog?.attributes.author.data.attributes.username}
+                          {blog?.attributes?.author?.data?.attributes?.username}
                         </p>
                         <p className="text-sm-regular text-tertiary dark:text-tertiary-dark sm:hidden sm:text-md-semibold">
                           {date}
@@ -110,12 +120,13 @@ export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-col items-start gap-spacing-md" id="publish_date">
-                    <p className="hidden text-sm-semibold sm:block">Published on</p>
+                  <div
+                    className="hidden flex-col items-start gap-spacing-md sm:flex"
+                    id="publish_date"
+                  >
+                    <p className="text-sm-semibold sm:block">Published on</p>
                     <div className="flex h-[40px] items-center gap-spacing-md py-spacing-md">
-                      <p className="hidden text-md-semibold text-primary sm:block sm:text-white">
-                        {date}
-                      </p>
+                      <p className="text-md-semibold text-primary sm:block sm:text-white">{date}</p>
                     </div>
                   </div>
                 </div>
@@ -125,12 +136,17 @@ export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
                 >
                   <p className="text-sm-semibold">File under</p>
                   <div className="flex h-10 items-center gap-spacing-md" id="categories">
-                    <div
-                      className="flex items-center rounded-full border-2 border-white px-2.5 py-spacing-xxs"
-                      id="badge"
-                    >
-                      <p className="text-sm-medium">{blog?.attributes.tag}</p>
-                    </div>
+                    {tags.map((e, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center rounded-full border-2 border-white px-2.5 py-spacing-xxs"
+                        id="badge"
+                      >
+                        <p className="text-sm-semibold text-brand-primary dark:text-brand-primary-dark">
+                          {e.attributes?.name}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
