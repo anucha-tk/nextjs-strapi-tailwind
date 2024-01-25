@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { BlogPageHeader } from './BlogPageHeader'
+import { BlogPageHeader } from './blogPageHeader/BlogPageHeader'
 
 export const MainBlog = () => {
   return (

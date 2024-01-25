@@ -1,7 +1,7 @@
 import React from 'react'
-import { FeaturedArticle } from './FeaturedArticle'
+import { FeaturedArticle } from './section/FeaturedArticle'
 import { HeaderSection } from './HeaderSection'
-import useGetBlogs from './hooks/getBlogs'
+import useGetBlogs from '../hooks/getBlogs'
 
 export const BlogPageHeader = () => {
   const { data } = useGetBlogs()

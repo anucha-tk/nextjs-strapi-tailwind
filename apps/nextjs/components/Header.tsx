@@ -7,8 +7,8 @@ import Image from 'next/image'
 
 const Header = () => {
   return (
-    <header id="header_navigation" className="h-20 items-stretch">
-      <div className="flex h-20 flex-shrink-0 flex-col items-center justify-center" id="header">
+    <header id="header_navigation" className="h-[72px] items-stretch md:h-20">
+      <div className="flex h-full flex-shrink-0 flex-col items-center justify-center" id="header">
         <div className="flex w-full items-center justify-between px-8" id="container">
           <div className="flex items-center gap-10" id="content">
             <Link
