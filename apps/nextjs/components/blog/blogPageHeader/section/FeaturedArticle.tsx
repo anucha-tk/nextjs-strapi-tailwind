@@ -3,6 +3,7 @@ import React from 'react'
 import SvgIcon from '@/components/svg-icons'
 import { Blog } from '@repo/types/src/blog'
 import moment from 'moment'
+import { GenMarkDown } from '@/components/GenMarkDown'
 
 export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
   let date = '-'
@@ -18,8 +19,7 @@ export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
   let tags = blog?.attributes?.tags?.data || []
   tags = tags.slice(0, 3)
 
-  const contents: string[] = []
-  blog?.attributes?.content?.map((e) => e.children?.map((c) => c.text && contents.push(c.text)))
+  const contents = blog?.attributes?.content?.split('\n').slice(0, 5).join('\n') || ''
 
   return (
     <article
@@ -65,7 +65,7 @@ export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
               </div>
 
               <div
-                className=" flex flex-col items-start gap-spacing-md self-stretch"
+                className="flex h-40 flex-col items-start gap-spacing-md self-stretch"
                 id="heading_and_text"
               >
                 <div className="flex items-start gap-spacing-xl self-stretch" id="heading_and_icon">
@@ -80,7 +80,10 @@ export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
                     strokWidth={2}
                   />
                 </div>
-                <p className="text-md-regular sm:text-white">{contents[0]}</p>
+                <GenMarkDown
+                  data={contents}
+                  className="truncate text-md-regular sm:text-primary-dark"
+                />
               </div>
               <div
                 className="flex items-start gap-spacing-3xl self-stretch text-white"
