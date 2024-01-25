@@ -4,17 +4,7 @@ export type Blog = {
   id?: number;
   attributes?: {
     title?: string;
-    content?: [
-      {
-        type?: string;
-        children?: [
-          {
-            text?: string;
-            type?: string;
-          },
-        ];
-      },
-    ];
+    content?: string;
     createdAt?: Date;
     updatedAt?: Date;
     publishedAt?: Date;

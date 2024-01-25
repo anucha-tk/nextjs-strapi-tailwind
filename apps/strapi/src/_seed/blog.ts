@@ -2,6 +2,7 @@ import { faker } from "@faker-js/faker";
 import chalk from "chalk";
 import { findSeedUser } from "./user";
 import { findSeedTags } from "./tag";
+import { genMarkdown } from "./markdown";
 
 export const generateBlogData = async (strapi: any) => {
   console.log(chalk.green("generating blogs"));
@@ -31,19 +32,9 @@ export const generateBlogData = async (strapi: any) => {
 };
 
 const _randomBlog = (seedUserIds: number[], seedTagIds: number[]) => {
-  const content = [
-    {
-      type: "paragraph",
-      children: [
-        { text: faker.lorem.paragraph(), type: "text" },
-        { text: faker.lorem.paragraph(), type: "text" },
-        { text: faker.lorem.paragraph(), type: "text" },
-      ],
-    },
-  ];
   return {
     title: faker.lorem.words(3),
-    content,
+    content: genMarkdown(),
     publishedAt: faker.date.recent(),
     createdAt: faker.date.past(),
     updatedAt: faker.date.recent(),

@@ -375,7 +375,6 @@ export interface ApiBlogBlog extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String;
-    content: Attribute.Blocks;
     author: Attribute.Relation<
       'api::blog.blog',
       'oneToOne',
@@ -383,6 +382,14 @@ export interface ApiBlogBlog extends Schema.CollectionType {
     >;
     image: Attribute.Media;
     tags: Attribute.Relation<'api::blog.blog', 'oneToMany', 'api::tag.tag'>;
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'Markdown';
+          preset: 'standard';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
