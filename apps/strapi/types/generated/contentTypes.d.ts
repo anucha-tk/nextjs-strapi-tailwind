@@ -395,6 +395,7 @@ export interface ApiBlogBlog extends Schema.CollectionType {
         'DIYProjects'
       ]
     >;
+    image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
