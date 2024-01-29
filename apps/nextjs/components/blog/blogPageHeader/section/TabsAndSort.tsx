@@ -11,6 +11,7 @@ export const TabsAndSort = () => {
   })
   const tags = data?.data.slice(0, 3) ?? []
 
+  // FIX: tab active not working?
   return (
     <article
       id="tabs_and_sort"

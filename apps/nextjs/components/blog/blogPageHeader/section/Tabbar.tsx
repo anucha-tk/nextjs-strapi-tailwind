@@ -8,7 +8,11 @@ export default function Tabbar({ tags }: { tags: Tag[] }) {
   return (
     <Tab.Group selectedIndex={selectedIndex} onChange={setSelectedIndex}>
       <Tab.List className={'flex justify-between gap-spacing-xl'}>
-        <Tab className={'text-md-semibold text-quaternary ui-selected:text-brand-700'}>
+        <Tab
+          className={
+            'text-md-semibold text-quaternary ui-selected:text-brand-700 dark:text-quaternary-dark'
+          }
+        >
           View all
         </Tab>
         {tags.map((e, i) => (

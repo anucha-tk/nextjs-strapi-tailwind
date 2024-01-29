@@ -33,7 +33,10 @@ export default function Blog({ blog }: { blog: Blog }) {
       ) : null}
       <div id="content" className="flex flex-col items-start gap-spacing-3xl self-stretch">
         <div id="heading_and_sup" className="flex flex-col items-start gap-spacing-md self-stretch">
-          <p id="badge" className="text-sm-semibold text-brand-700">
+          <p
+            id="badge"
+            className="text-sm-semibold text-brand-secondary dark:text-brand-secondary-dark"
+          >
             {blog.attributes?.tags?.data[0].attributes?.name ?? ''}
           </p>
           <div
@@ -41,7 +44,9 @@ export default function Blog({ blog }: { blog: Blog }) {
             className="flex flex-col items-start gap-spacing-md self-stretch"
           >
             <div id="heading_and_icon" className="flex gap-x-spacing-xl self-stretch">
-              <p className="flex-1 text-xl-semibold text-primary">{blog.attributes?.title}</p>
+              <p className="flex-1 text-xl-semibold text-primary dark:text-primary-dark">
+                {blog.attributes?.title}
+              </p>
               <SvgIcon
                 kind="arrowUpRight"
                 href={`/blog/${slug(blog?.attributes?.title ?? '')}`}
@@ -53,10 +58,12 @@ export default function Blog({ blog }: { blog: Blog }) {
         </div>
         <div id="avatar_label_group" className="flex items-center gap-spacing-lg">
           <div id="text_sup" className="flex flex-col items-start">
-            <p className="text-sm-semibold text-primary">
+            <p className="text-sm-semibold text-primary dark:text-primary-dark">
               {blog.attributes?.author?.data?.attributes?.username}
             </p>
-            <p className="text-sm-regular text-tertiary">{getDate(blog.attributes?.updatedAt)}</p>
+            <p className="text-sm-regular text-tertiary dark:text-tertiary-dark">
+              {getDate(blog.attributes?.updatedAt)}
+            </p>
           </div>
         </div>
       </div>
