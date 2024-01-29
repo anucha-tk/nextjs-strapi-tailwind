@@ -45,4 +45,12 @@ export const customColor = {
     hover: '#344054',
     'hover-dark': 'D0D5DD',
   },
+  quaternary: {
+    DEFAULT: '#667085',
+    dark: '#98A2B3',
+  },
+  'fg-tertiary': {
+    DEFAULT: '#344054',
+    dark: '#98A2B3',
+  },
 }

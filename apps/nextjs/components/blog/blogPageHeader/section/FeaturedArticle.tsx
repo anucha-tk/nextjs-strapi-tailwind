@@ -1,11 +1,22 @@
+'use client'
 import Image from 'next/image'
 import React from 'react'
-import SvgIcon from '@/components/svg-icons'
-import { Blog } from '@repo/types/src/blog'
 import moment from 'moment'
 import { GenMarkDown } from '@/components/GenMarkDown'
+import SvgIcon from '@/components/svg-icons'
+import { slug } from 'github-slugger'
+import { useQuery } from '@tanstack/react-query'
+import { ENUM_QUERY_KEY } from 'services/react-query/constants/query.constants'
+import { ENUM_BLOG_SIZE } from 'services/api/constants/blog.enum.constants'
+import { getBlogs } from 'services/api/services/blog'
 
-export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
+export const FeaturedArticle = () => {
+  const { data } = useQuery({
+    queryKey: [ENUM_QUERY_KEY.BLOGS, ENUM_BLOG_SIZE.MOBILE, 1],
+    queryFn: () => getBlogs({ page: 1, pageSize: ENUM_BLOG_SIZE.MOBILE, populate: true }),
+  })
+  const blog = data?.data[0]
+
   let date = '-'
   if (blog?.attributes?.publishedAt) {
     const dateObject = moment(blog.attributes.publishedAt)
@@ -74,10 +85,8 @@ export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
                   </p>
                   <SvgIcon
                     kind="arrowUpRight"
-                    href="/"
-                    size={6}
-                    strokColor={'white'}
-                    strokWidth={2}
+                    href={`/blog/${slug(blog?.attributes?.title ?? '')}`}
+                    className="text-sm sm:text-white"
                   />
                 </div>
                 <GenMarkDown
@@ -145,9 +154,7 @@ export const FeaturedArticle = ({ blog }: { blog?: Blog }) => {
                         className="flex items-center rounded-full border-2 border-white px-2.5 py-spacing-xxs"
                         id="badge"
                       >
-                        <p className="text-sm-semibold text-brand-primary dark:text-brand-primary-dark">
-                          {e.attributes?.name}
-                        </p>
+                        <p className="text-sm-medium">{e.attributes?.name}</p>
                       </div>
                     ))}
                   </div>

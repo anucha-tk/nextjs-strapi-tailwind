@@ -1,3 +1,7 @@
 export enum ENUM_BLOG_URL {
-  'BLOGS' = '/api/blogs?populate=*&pagination[pageSize]=10&sort=createdAt:desc',
+  'BLOGS' = '/api/blogs',
+}
+
+export enum ENUM_TAG_URL {
+  'TAGS' = '/api/tags',
 }
