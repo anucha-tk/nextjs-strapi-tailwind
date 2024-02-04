@@ -54,8 +54,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={siteConfig.language}>
-      <body>
+    <html lang={siteConfig.language} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <ThemeProviders>
           <div className='contaienr mx-auto'>
             <Header />

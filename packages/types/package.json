@@ -8,6 +8,7 @@
   },
   "exports": {
     "blog": "./src/blog.ts",
-    "tag": "./src/tag.ts"
+    "tag": "./src/tag.ts",
+    "strapi-query": "./src/strapi-query.ts"
   }
 }

@@ -1,3 +1,9 @@
+import BlogPageHeader from '@/components/blogs/BlogPageHeader';
+
 export default function HomePage() {
-  return <main></main>;
+  return (
+    <main>
+      <BlogPageHeader />
+    </main>
+  );
 }

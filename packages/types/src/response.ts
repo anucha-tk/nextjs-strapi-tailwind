@@ -1,9 +1,7 @@
 export type IResponsePaging<T> = {
-  data: {
-    data: T;
-    meta: {
-      pagination: Pagination;
-    };
+  data: T;
+  meta: {
+    pagination: Pagination;
   };
 };
 
