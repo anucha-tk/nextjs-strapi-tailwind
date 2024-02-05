@@ -1,9 +1,13 @@
 import BlogPageHeader from '@/components/blogs/BlogPageHeader';
 
-export default function HomePage() {
+export default function HomePage({
+  searchParams,
+}: {
+  searchParams: { page: string };
+}) {
   return (
     <main>
-      <BlogPageHeader />
+      <BlogPageHeader page={searchParams.page ?? '1'} />
     </main>
   );
 }

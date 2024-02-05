@@ -9,17 +9,16 @@ const apiFetch = async <T>({
   endpoint: string;
   pagination?: PaginationQuery;
 }): Promise<T> => {
-  const params: Record<string, string> = {};
-  if (pagination?.page)
-    Object.assign(params, { 'pagination[page]': pagination.page });
-  if (pagination?.pageSize)
-    Object.assign(params, { 'pagination[pageSize]': pagination.pageSize });
-  if (pagination?.sort) Object.assign(params, { sort: pagination.sort });
-  if (pagination?.populate) Object.assign(params, { populate: '*' });
-  if (pagination?.limit) Object.assign(params, { limit: pagination.limit });
-
   const urlWithParams = new URL(endpoint, BASE_URL);
-  urlWithParams.search = new URLSearchParams(params).toString();
+
+  const params = new URLSearchParams();
+  if (pagination?.page) params.set('pagination[page]', pagination.page + '');
+  if (pagination?.pageSize)
+    params.set('pagination[pageSize]', pagination.pageSize + '');
+  if (pagination?.sort) params.set('sort', pagination.sort);
+  if (pagination?.populate) params.set('populate', '*');
+
+  urlWithParams.search = params.toString();
 
   try {
     const response = await fetch(urlWithParams.href, {

@@ -1,10 +1,10 @@
 import { HeaderSection } from './BlogHeader';
 import { FeaturedArticle } from './sections/FeatureArticle';
 import { TabsAndSort } from './sections/TabsAndSort';
-// import BlogContainer from './section/BlogContainer'
-// import BlogContainerWeb from './section/BlogContainerWeb'
+import BlogContainer from './sections/BlogContainer';
+import BlogContainerWeb from './sections/BlogContainerWeb';
 
-const BlogPageHeader = () => {
+const BlogPageHeader = ({ page }: { page: string }) => {
   return (
     <section
       className='flex flex-col items-center self-stretch'
@@ -18,8 +18,8 @@ const BlogPageHeader = () => {
         >
           <FeaturedArticle />
           <TabsAndSort />
-          {/* <BlogContainer /> */}
-          {/* <BlogContainerWeb /> */}
+          <BlogContainer page={page} />
+          <BlogContainerWeb page={page} />
         </div>
       </section>
     </section>
