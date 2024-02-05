@@ -7,10 +7,13 @@ export type PaginationQuery = {
 };
 
 export type Filter = {
-  name: string;
   field: string;
   operator: FILTER_OPERATOR;
   value: string;
+};
+
+export type FilterRelation = Filter & {
+  name: string;
 };
 
 export type FILTER_OPERATOR = "$eq" | "$in";

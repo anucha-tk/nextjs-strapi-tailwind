@@ -15,6 +15,7 @@ export async function getTags({
   pageSize?: number;
   populate?: boolean;
 }) {
+  revalidatePath('/');
   return apiFetch<IResponsePaging<Tag[]>>({
     endpoint: ENUM_TAG_URL.TAGS,
     pagination: {

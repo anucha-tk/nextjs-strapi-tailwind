@@ -17,6 +17,13 @@ export default function Pagination({ pagination }: { pagination: Pagination }) {
   const curr = pagination.page * pagination.pageSize;
   const end = curr > pagination.total ? pagination.total : curr + '';
 
+  let nextPath = `/?page=${pagination.page + 1}`;
+  let previousPath = `/?page=${pagination.page - 1}`;
+  if (currFilter) {
+    nextPath = nextPath.concat(`&filter[tag]=${currFilter}`);
+    previousPath = previousPath.concat(`&filter[tag]=${currFilter}`);
+  }
+
   return (
     <div
       id='pagination'
@@ -25,9 +32,7 @@ export default function Pagination({ pagination }: { pagination: Pagination }) {
       <Button
         startContent={<ArrowLeft />}
         isDisabled={pagination.page === 1}
-        onClick={() =>
-          router.push(`/?page=${pagination.page - 1}&filter[tag]=${currFilter}`)
-        }
+        onClick={() => router.push(previousPath)}
         variant='ghost'
         className={
           'flex items-center justify-center hover:text-primary gap-spacing-md rounded-md border border-[D0D5DD] p-spacing-md text-fg-tertiary shadow-sm dark:text-fg-tertiary-dark sm:flex-1 sm:justify-start sm:gap-spacing-sm sm:border-none sm:p-spacing-none sm:pr-2 sm:shadow-none'
@@ -44,9 +49,7 @@ export default function Pagination({ pagination }: { pagination: Pagination }) {
       <Button
         endContent={<ArrowRight />}
         isDisabled={pagination.page >= pagination.pageCount}
-        onClick={() =>
-          router.push(`/?page=${pagination.page + 1}&filter[tag]=${currFilter}`)
-        }
+        onClick={() => router.push(nextPath)}
         variant='ghost'
         className={
           'flex items-center justify-center hover:text-primary gap-spacing-md rounded-md border border-[D0D5DD] p-spacing-md text-fg-tertiary shadow-sm dark:text-fg-tertiary-dark sm:flex-1 sm:justify-end sm:gap-spacing-sm sm:border-none sm:p-spacing-none sm:pr-2 sm:shadow-none'
