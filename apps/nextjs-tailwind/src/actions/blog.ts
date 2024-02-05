@@ -39,6 +39,7 @@ export async function getBlog({
   slug: string;
   populate?: boolean;
 }) {
+  revalidatePath('/blog');
   return apiFetch<IResponsePaging<Blog>>({
     endpoint: `${ENUM_BLOG_URL.SLUG}/${slug}`,
     pagination: {

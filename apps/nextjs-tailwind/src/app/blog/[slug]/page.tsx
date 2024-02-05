@@ -17,11 +17,11 @@ const Blog = async ({ params }: { params: { slug: string } }) => {
     >
       <div
         id='header_section'
-        className='flex py-spacing-9xl flex-col gap-spacing-7xl items-center self-stretch'
+        className='flex py-spacing-7xl gap-spacing-6xl sm:py-spacing-9xl flex-col sm:gap-spacing-7xl items-center self-stretch'
       >
         <div
           id='container'
-          className='flex flex-col items-center self-stretch gap-spacing-4xl px-8'
+          className='flex flex-col items-center self-stretch gap-spacing-4xl px-4 sm:px-8'
         >
           <div
             id='contain'
@@ -80,7 +80,7 @@ const Blog = async ({ params }: { params: { slug: string } }) => {
       </div>
       <div
         id='section'
-        className='flex flex-col pb-spacing-9xl items-center self-stretch gap-spacing-7xl'
+        className='flex flex-col pb-spacing-7xl sm:pb-spacing-9xl items-center self-stretch gap-spacing-6xl sm:gap-spacing-7xl px-8 sm:px-spacing-none'
       >
         <GenMarkDown
           data={data.attributes?.content}
