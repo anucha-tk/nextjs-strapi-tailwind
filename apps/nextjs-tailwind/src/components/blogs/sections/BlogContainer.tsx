@@ -2,7 +2,7 @@ import React from 'react';
 import Blog from './Blog';
 import { getBlogs } from '@/actions/blog';
 import Pagination from '@/components/Pagination';
-import { Filter } from '@repo/types/src/strapiQuery';
+import { FilterRelation } from '@repo/types/src/strapiQuery';
 
 export default async function BlogContainer({
   page,
@@ -11,9 +11,9 @@ export default async function BlogContainer({
   page?: string;
   filter?: string;
 }) {
-  const filters: Filter[] = [];
+  const filterRelations: FilterRelation[] = [];
   if (filter) {
-    filters.push({
+    filterRelations.push({
       name: 'tags',
       field: 'name',
       operator: '$in',
@@ -23,7 +23,7 @@ export default async function BlogContainer({
   const blogs = await getBlogs({
     populate: true,
     page: page ? +page : 1,
-    filters,
+    filterRelations,
   });
 
   return (

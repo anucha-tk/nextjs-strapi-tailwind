@@ -70,7 +70,7 @@ export default function Blog({ blog }: { blog: Blog }) {
               <SvgIcon
                 kind='arrowUpRight'
                 href={`/blog/${slug(blog?.attributes?.title ?? '')}`}
-                className='text-sm sm:text-white'
+                className='text-primary text-sm dark:text-primary-dark'
               />
             </div>
             <p className='text-md-regular'>{contents}</p>

@@ -21,5 +21,9 @@ export default {
       gap: customSpacing,
     },
   },
-  plugins: [require('@tailwindcss/forms'), nextui()],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    nextui(),
+  ],
 };

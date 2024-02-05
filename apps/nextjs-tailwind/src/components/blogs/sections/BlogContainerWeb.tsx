@@ -2,7 +2,7 @@ import Blog from './Blog';
 import { getBlogs } from '@/actions/blog';
 import { ENUM_BLOG_SIZE } from '@/lib/api/constants/blog.enum.constants';
 import Pagination from '@/components/Pagination';
-import { Filter } from '@repo/types/src/strapiQuery';
+import { FilterRelation } from '@repo/types/src/strapiQuery';
 
 export default async function BlogContainerWeb({
   page,
@@ -11,9 +11,9 @@ export default async function BlogContainerWeb({
   page?: string;
   filter?: string;
 }) {
-  const filters: Filter[] = [];
+  const filterRelations: FilterRelation[] = [];
   if (filter) {
-    filters.push({
+    filterRelations.push({
       name: 'tags',
       field: 'name',
       operator: '$in',
@@ -25,7 +25,7 @@ export default async function BlogContainerWeb({
     pageSize: ENUM_BLOG_SIZE.WEB,
     populate: true,
     page: page ? +page : 1,
-    filters,
+    filterRelations,
   });
 
   return (

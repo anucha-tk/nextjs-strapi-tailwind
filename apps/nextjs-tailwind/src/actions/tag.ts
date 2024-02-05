@@ -5,6 +5,7 @@ import { ENUM_TAG_SIZE } from '@/lib/api/constants/tag.enum.constants';
 import { ENUM_TAG_URL } from '@/lib/api/constants/url.constants';
 import { IResponsePaging } from '@repo/types/src/response';
 import { Tag } from '@repo/types/src/tag';
+import { revalidatePath } from 'next/cache';
 
 export async function getTags({
   page = 1,

@@ -1,4 +1,8 @@
-import { PaginationQuery, Filter } from '@repo/types/src/strapiQuery';
+import {
+  PaginationQuery,
+  Filter,
+  FilterRelation,
+} from '@repo/types/src/strapiQuery';
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const apiKey = process.env.NEXT_PUBLIC_JWT_TOKEN;
 
@@ -6,10 +10,12 @@ const apiFetch = async <T>({
   endpoint,
   pagination,
   filters,
+  filterRelations,
 }: {
   endpoint: string;
   pagination?: PaginationQuery;
   filters?: Filter[];
+  filterRelations?: FilterRelation[];
 }): Promise<T> => {
   const urlWithParams = new URL(endpoint, BASE_URL);
 
@@ -22,9 +28,15 @@ const apiFetch = async <T>({
 
   if (filters && filters.length > 0) {
     for (const filter of filters) {
+      params.set(`filters[${filter.field}][${filter.operator}]`, filter.value);
+    }
+  }
+
+  if (filterRelations && filterRelations.length > 0) {
+    for (const filterRelation of filterRelations) {
       params.set(
-        `filters[${filter.name}][${filter.field}][${filter.operator}]`,
-        filter.value,
+        `filters[${filterRelation.name}][${filterRelation.field}][${filterRelation.operator}]`,
+        filterRelation.value,
       );
     }
   }
