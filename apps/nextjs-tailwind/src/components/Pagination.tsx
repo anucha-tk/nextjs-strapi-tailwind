@@ -1,12 +1,15 @@
 'use client';
 import { Pagination } from '@repo/types/src/response';
 import React from 'react';
-import Button from './buttons/Button';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { Button } from '@nextui-org/react';
 
 export default function Pagination({ pagination }: { pagination: Pagination }) {
   const router = useRouter();
+  const params = useSearchParams();
+  const currFilter = params.get('filter[tag]');
+
   const start =
     pagination.page === 1
       ? '1'
@@ -20,9 +23,12 @@ export default function Pagination({ pagination }: { pagination: Pagination }) {
       className='flex items-center gap-spacing-md self-stretch border-t border-t-[#EAECF0] pt-spacing-xl sm:gap-spacing-2xl sm:pt-spacing-2xl'
     >
       <Button
-        leftIcon={ArrowLeft}
-        disabled={pagination.page === 1}
-        onClick={() => router.push(`/?page=${pagination.page - 1}`)}
+        startContent={<ArrowLeft />}
+        isDisabled={pagination.page === 1}
+        onClick={() =>
+          router.push(`/?page=${pagination.page - 1}&filter[tag]=${currFilter}`)
+        }
+        variant='ghost'
         className={
           'flex items-center justify-center hover:text-primary gap-spacing-md rounded-md border border-[D0D5DD] p-spacing-md text-fg-tertiary shadow-sm dark:text-fg-tertiary-dark sm:flex-1 sm:justify-start sm:gap-spacing-sm sm:border-none sm:p-spacing-none sm:pr-2 sm:shadow-none'
         }
@@ -36,9 +42,12 @@ export default function Pagination({ pagination }: { pagination: Pagination }) {
         Page {start} of {end}
       </p>
       <Button
-        rightIcon={ArrowRight}
-        disabled={pagination.page >= pagination.pageCount}
-        onClick={() => router.push(`/?page=${pagination.page + 1}`)}
+        endContent={<ArrowRight />}
+        isDisabled={pagination.page >= pagination.pageCount}
+        onClick={() =>
+          router.push(`/?page=${pagination.page + 1}&filter[tag]=${currFilter}`)
+        }
+        variant='ghost'
         className={
           'flex items-center justify-center hover:text-primary gap-spacing-md rounded-md border border-[D0D5DD] p-spacing-md text-fg-tertiary shadow-sm dark:text-fg-tertiary-dark sm:flex-1 sm:justify-end sm:gap-spacing-sm sm:border-none sm:p-spacing-none sm:pr-2 sm:shadow-none'
         }

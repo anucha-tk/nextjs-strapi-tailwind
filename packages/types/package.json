@@ -7,8 +7,8 @@
     "access": "public"
   },
   "exports": {
-    "blog": "./src/blog.ts",
-    "tag": "./src/tag.ts",
-    "strapi-query": "./src/strapi-query.ts"
+    "./blog": "./src/blog.ts",
+    "./tag": "./src/tag.ts",
+    "./strapiQuery": "./src/strapiQuery.ts"
   }
 }

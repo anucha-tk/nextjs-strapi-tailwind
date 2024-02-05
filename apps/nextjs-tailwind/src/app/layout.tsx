@@ -4,7 +4,8 @@ import '@/styles/globals.css';
 import { siteConfig } from '@/constant/config';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { ThemeProviders } from './theme-providers';
+import NextUIProviders from '@/providers/NextUIProvider';
+import { ThemeProviders } from '@/providers/theme-providers';
 
 // !STARTERCONF Change these default meta
 // !STARTERCONF Look at @/constant/config to change them
@@ -56,13 +57,15 @@ export default function RootLayout({
   return (
     <html lang={siteConfig.language} suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <ThemeProviders>
-          <div className='contaienr mx-auto'>
-            <Header />
-            {children}
-            <Footer />
-          </div>
-        </ThemeProviders>
+        <NextUIProviders>
+          <ThemeProviders>
+            <div className='contaienr mx-auto'>
+              <Header />
+              {children}
+              <Footer />
+            </div>
+          </ThemeProviders>
+        </NextUIProviders>
       </body>
     </html>
   );

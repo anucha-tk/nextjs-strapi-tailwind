@@ -13,6 +13,8 @@ export default function Blog({ blog }: { blog: Blog }) {
     imageUrl = blog.attributes.image.data.attributes.formats.small.url;
   }
 
+  const tags = blog.attributes?.tags?.data.slice(0, 3) ?? [];
+
   return (
     <div className='flex flex-col items-start gap-spacing-2xl self-stretch sm:min-w-[320px] sm:flex-1'>
       {imageUrl ? (
@@ -43,12 +45,17 @@ export default function Blog({ blog }: { blog: Blog }) {
           id='heading_and_sup'
           className='flex flex-col items-start gap-spacing-md self-stretch'
         >
-          <p
-            id='badge'
-            className='text-sm-semibold text-brand-secondary dark:text-brand-secondary-dark'
-          >
-            {blog.attributes?.tags?.data[0].attributes?.name ?? ''}
-          </p>
+          <div className='flex gap-4'>
+            {tags.map((tag, i) => (
+              <p
+                id='badge'
+                className='text-sm-semibold text-brand-secondary dark:text-brand-secondary-dark'
+                key={i}
+              >
+                {tag.attributes?.name}
+              </p>
+            ))}
+          </div>
           <div
             id='heading_and_text'
             className='flex flex-col items-start gap-spacing-md self-stretch'

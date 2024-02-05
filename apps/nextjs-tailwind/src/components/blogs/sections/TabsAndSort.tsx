@@ -4,7 +4,6 @@ import Tabbar from './Tabbar';
 export const TabsAndSort = async () => {
   const tags = await getTags({ pageSize: 3 });
 
-  // FIX: tab active not working?
   return (
     <article
       id='tabs_and_sort'
