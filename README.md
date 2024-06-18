@@ -1,81 +1,61 @@
-# Turborepo starter
+# Nextjs Strapi Tawilwind
 
-This is an official starter Turborepo.
+Basic Turborepo with Nextjs and Starpi
 
-## Using this example
+<!--toc:start-->
 
-Run the following command:
+- [Nextjs Strapi Tawilwind](#nextjs-strapi-tawilwind)
+  - [Run Local Postgresql](#run-local-postgresql)
+  - [Run Starpi](#run-starpi)
+  - [Generate Api Token](#generate-api-token)
+  - [Run Nextjs](#run-nextjs)
+  <!--toc:end-->
 
-```sh
-npx create-turbo@latest
+## Technical & Tools
+
+- Database
+  - Postgresql
+- Turborepo
+- Docker
+- CMS
+  - Strapi
+- Infra
+  - Husky, Commit-lint
+- Nextjs
+  - Filter, Pagination
+- Tailwindcss
+- Typescript
+- Cloudinary
+- Blog markdown
+- and more
+
+## Run Local Postgresql
+
+```bash
+make dev-postgres-local
 ```
 
-## What's inside?
+## Run Starpi
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```bash
+make run-strapi-dev
 ```
 
-### Develop
+## Generate Api Token
 
-To develop all apps and packages, run the following command:
+Go to Strapi Dashboard -> Api Tokens and Generate, then pass to apps/nextjs-tawilwind .env.development
 
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```text
+NEXT_PUBLIC_JWT_TOKEN=
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+## Run Nextjs
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```bash
+make run-nextjs-dev
 
 ```
-npx turbo link
-```
 
-## Useful Links
+## Screenshot
 
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+![Alt text](doc/images/screen_shot.png)

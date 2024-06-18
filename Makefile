@@ -10,3 +10,7 @@ restart:
 	docker compose restart
 logs:
 	docker compose logs -f
+run-strapi-dev:
+	cd apps/strapi && yarn dev
+run-nextjs-dev:
+	cd apps/nextjs-tailwind && yarn dev
